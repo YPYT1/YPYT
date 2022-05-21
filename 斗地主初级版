@@ -1,0 +1,54 @@
+    public static void main(String[] args) {
+        ArrayList<String> array = new ArrayList<String>();
+        //定义牌的类别
+        String[] colors = {"♦", "♣", "❤", "🍑"};
+        //定义牌的点数
+        String[] numbers = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "k", "A"};
+
+        for (String color : colors) {
+            for (String number : numbers) {
+                array.add(color + number);
+
+            }
+        }
+        array.add("小王");
+        array.add("大王");
+        //洗牌，用Collections的shuffle()的方法实现；
+        Collections.shuffle(array);
+
+//        System.out.println(array);
+        //发牌，给三个玩家发牌
+        ArrayList<String> wlt = new ArrayList<String>();
+        ArrayList<String> xxl = new ArrayList<String>();
+        ArrayList<String> zl = new ArrayList<String>();
+        ArrayList<String> dp = new ArrayList<String>();
+
+        for (int i = 0; i < array.size(); i++) {
+            String pkp = array.get(i);
+
+            if (i >= array.size() - 3) {
+                dp.add(pkp);
+            } else if (i % 3 == 0) {
+                wlt.add(pkp);
+            } else if (i % 3 == 1) {
+                xxl.add(pkp);
+            } else if (i % 3 == 2) {
+                zl.add(pkp);
+            }
+        }
+        Collections.sort(wlt);
+
+        lookpkp("王令涛",wlt);
+        lookpkp("谢绪丽",xxl);
+        lookpkp("张兰",zl);
+        lookpkp("底牌",dp);
+    }
+
+    //看牌的方法
+    public static void lookpkp(String name, ArrayList<String>array) {
+        System.out.print(name+"的牌是");
+        for (String pkp : array){
+            System.out.print(pkp+" ");
+        }
+        System.out.println();
+    }
