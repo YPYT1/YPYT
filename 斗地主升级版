@@ -1,0 +1,59 @@
+    public static void main(String[] args) {
+        //创建HashMap,键是编号，值是牌
+        HashMap<Integer, String> hm = new HashMap<Integer, String>();
+        //创建ArrayList,存储编号
+        ArrayList<Integer> array = new ArrayList<Integer>();
+
+        //定义牌的类别
+        String[] colors = {"♦", "♣", "❤", "🍑"};
+        //定义牌的点数
+        String[] numbers = {"3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "k", "A", "2"};
+
+        int index = 0;
+        for (String number : numbers) {
+            for (String color : colors) {
+                hm.put(index, color + number);
+                array.add(index);
+                index++;
+            }
+        }
+        hm.put(index, "小王");
+        array.add(index);
+        index++;
+        hm.put(index, "大王");
+        array.add(index);
+
+        Collections.shuffle(array);
+        TreeSet<Integer> wlt = new TreeSet<Integer>();
+        TreeSet<Integer> xxl = new TreeSet<Integer>();
+        TreeSet<Integer> zl = new TreeSet<Integer>();
+        TreeSet<Integer> dp = new TreeSet<Integer>();
+
+        for (int i = 0; i < array.size(); i++) {
+            int x = array.get(i);
+            if (i >= array.size() - 3) {
+                dp.add(x);
+            } else if (i % 3 == 0) {
+                wlt.add(x);
+            } else if (i % 3 == 1) {
+                xxl.add(x);
+            } else if (i % 3 == 2) {
+                zl.add(x);
+            }
+        }
+
+        lookpk("王令涛", wlt, hm);
+        lookpk("谢绪丽", xxl, hm);
+        lookpk("张兰", zl, hm);
+        lookpk("底牌", dp, hm);
+    }
+
+    //定义方法看牌
+    public static void lookpk(String name, TreeSet<Integer> ts, HashMap<Integer, String> hm) {
+        System.out.print(name + "的牌是");
+        for (Integer key : ts) {
+            String poker = hm.get(key);
+            System.out.print(poker + " ");
+        }
+        System.out.println();
+    }
