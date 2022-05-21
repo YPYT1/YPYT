@@ -1,0 +1,30 @@
+        File f1 = new File("D:\\a\\java.txt");
+//        System.out.println(f1.createNewFile());
+
+        System.out.println(f1.isDirectory());
+        System.out.println(f1.isFile());
+        System.out.println(f1.exists());
+        System.out.println("-----------");
+
+        System.out.println(f1.getAbsolutePath());
+        System.out.println(f1.getPath());
+        System.out.println(f1.getName());
+        System.out.println("-------------");
+
+        File f2 = new File("D:\\a");
+        String[] strings = f2.list();
+
+        for (String str : strings) {
+            System.out.println(str);
+        }
+        System.out.println("-------------");
+
+        File[] files = f2.listFiles();
+        for (File file : files) {
+            System.out.println(file);
+//            System.out.println(file.getName());
+            if (file.isFile()){
+                System.out.println(file.getName());
+            }
+        }
+    }
