@@ -1,0 +1,22 @@
+package com.compare;
+
+import java.io.File;
+
+public class ddz {
+    public static void main(String[] args) {
+        File srcfile = new File("D:\\a");
+//        File srcfile = new File("D:\\DING DING");
+
+        AllFiles(srcfile);
+    }
+
+    public static void AllFiles(File srcfile) {
+        File[] filesAll = srcfile.listFiles();
+
+        if (filesAll != null){for (File file : filesAll){
+                if (file.isDirectory()){AllFiles(file);}
+                    else {System.out.println(file.getAbsolutePath());}
+            }}
+    }
+}
+
