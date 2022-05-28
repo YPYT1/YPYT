@@ -1,0 +1,64 @@
+public static void main(String[] args) throws IOException {
+       long StartTime = System.currentTimeMillis();
+
+        long EndTime = System.currentTimeMillis();
+//        method1();
+//        method2();
+//        method3();
+//        method4();
+        System.out.println("共耗时:" + (EndTime - StartTime) + "毫秒");
+    }
+    
+    //字节流单子字符读取
+    public static void method1() throws IOException {
+        FileInputStream fis = new FileInputStream("C:\\Users\\YPYT\\Desktop\\导出\\2.avi");
+        FileOutputStream fos = new FileOutputStream("D:\\idea file\\test\\2.avi");
+
+        int bys;
+        while ((bys = fis.read()) != -1) {
+            fos.write(bys);
+        }
+        fos.close();
+        fis.close();
+    }
+    
+    //字节流以数组方式读取
+    public static void method2() throws IOException {
+        FileInputStream fis = new FileInputStream("C:\\Users\\YPYT\\Desktop\\导出\\2.avi");
+        FileOutputStream fos = new FileOutputStream("D:\\idea file\\test\\2.avi");
+
+        byte[] bytes = new byte[1024];
+        int len;
+        while ((len = fis.read(bytes)) != -1) {
+            fos.write(bytes, 0, len);
+        }
+        fos.close();
+        fis.close();
+    }
+    
+    //字节缓冲流以单个方式读取
+    public static void method3() throws IOException {
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream("C:\\Users\\YPYT\\Desktop\\导出\\2.avi"));
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("D:\\idea file\\test\\2.avi"));
+
+        int bys;
+        while ((bys = bis.read()) != -1) {
+            bos.write(bys);
+        }
+        bos.close();
+        bis.close();
+    }
+    
+    //字节缓冲流以数组方式读取
+    public static void method4() throws IOException {
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream("C:\\Users\\YPYT\\Desktop\\导出\\2.avi"));
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("D:\\idea file\\test\\2.avi"));
+
+        byte[] bytes = new byte[1024];
+        int len;
+        while ((len = bis.read(bytes)) != -1) {
+            bos.write(bytes, 0, len);
+        }
+        bos.close();
+        bis.close();
+    }
