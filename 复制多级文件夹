@@ -1,0 +1,43 @@
+public class aa{
+    public static void main(String[] args) throws IOException {
+        File srcFile = new File("D:\\qq file");
+        File destFile = new File("D:\\qq file2");
+
+        copyFolder(srcFile, destFile);
+
+    }
+    //复制文件夹
+    private static void copyFolder(File srcFile, File destFile) throws IOException {
+        if(srcFile.isDirectory()){
+            String srcFilename = srcFile.getName();
+            File newFolder = new File(destFile,srcFilename);
+
+            if(!newFolder.exists()){
+                newFolder.mkdir();
+            }
+            File[] fileArray = srcFile.listFiles();
+
+            for(File file : fileArray){
+                copyFolder(file, newFolder);
+            }}else{
+            File newfile = new File(destFile,srcFile.getName());
+            copyFile(srcFile, newfile);
+        }
+
+    }
+
+    //复制文件
+    private static void copyFile(File srcfile, File destFile) throws IOException {
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(srcfile));
+
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(destFile));
+
+        byte[] bytes = new byte[1024];
+        int len;
+        while ((len = bis.read(bytes)) != -1){
+            bos.write(bytes,0,len);
+        }
+        bis.close();
+        bos.close();
+    }
+}
