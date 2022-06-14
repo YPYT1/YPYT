@@ -1,0 +1,28 @@
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+//        write();
+        read();
+    }
+
+    private static void read() throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("D:\\idea file\\test\\copy"));
+        PrintStream pis = new PrintStream(System.out);
+
+        Object obj = ois.readObject();
+        Student s = (Student) obj;
+
+        pis.println(s.getName() + "," + s.getAge());
+        ois.close();
+    }
+
+    private static void write() throws IOException {
+        ObjectOutputStream oop = new ObjectOutputStream(new FileOutputStream("D:\\idea file\\test\\copy"));
+
+        Student s = new Student("王令涛", 11);
+
+        oop.writeObject(s);
+        oop.close();
+    }
+    
+    
+    //功能类ID锁定代码
+    //private static final long serialVersionUID = 22L;
