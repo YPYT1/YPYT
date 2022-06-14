@@ -1,0 +1,48 @@
+public class test {
+    public static void Start(){
+        //定义猜的数字
+        Random r = new Random();
+        //范围1-100
+        int number = r.nextInt(100)+1;
+
+        while (true){
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("请输入要猜的数字");
+            int guessNumber = scanner.nextInt();
+
+            if (guessNumber > number){
+                System.out.println("你猜的数字"+guessNumber+"大了");
+            }else if (guessNumber < number){
+                System.out.println("你猜的数字"+guessNumber+"小了");
+            }else {
+                System.out.println("恭喜你猜中了");
+                break;
+            }
+        }
+    }
+}
+
+
+    public static void main(String[] args) throws IOException {
+        Properties props = new Properties();
+
+        FileReader fr = new FileReader("D:\\idea file\\test\\copy");
+        props.load(fr);
+        fr.close();
+
+        String count = props.getProperty("count");
+        int num = Integer.parseInt(count);
+
+        if (num >=3 ){
+            System.out.println("游戏已结束");
+        }else {
+            test.Start();
+            num++;
+            props.setProperty("count",String.valueOf(num));
+            FileWriter fw = new FileWriter("D:\\idea file\\test\\copy");
+            props.store(fw,null);
+            fw.close();
+        }
+
+    }
